@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apnadukan - Online Shopping for Electronics, Fashion, Home & More</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <h1><i class="fas fa-shopping-bag"></i> Apnadukan</h1>
+                    <p class="tagline">Shop Smart, Live Better</p>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search for products, brands and more">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    <button class="btn-login"><i class="fas fa-user"></i> Login</button>
+                    <div class="cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                        <span class="cart-label">Cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" data-category="all" class="active"><i class="fas fa-home"></i> All</a></li>
+                <li><a href="#" data-category="electronics"><i class="fas fa-laptop"></i> Electronics</a></li>
+                <li><a href="#" data-category="fashion"><i class="fas fa-tshirt"></i> Fashion</a></li>
+                <li><a href="#" data-category="home"><i class="fas fa-couch"></i> Home & Furniture</a></li>
+                <li><a href="#" data-category="appliances"><i class="fas fa-blender"></i> Appliances</a></li>
+                <li><a href="#" data-category="books"><i class="fas fa-book"></i> Books</a></li>
+                <li><a href="#" data-category="toys"><i class="fas fa-gamepad"></i> Toys</a></li>
+                <li><a href="#" data-category="sports"><i class="fas fa-dumbbell"></i> Sports</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Banner Section -->
+            <section class="banner-section">
+                <div class="banner-slider">
+                    <div class="banner-slide active">
+                        <div class="banner-content">
+                            <h2>Big Billion Days Sale</h2>
+                            <p>Get up to 80% off on all categories</p>
+                            <button class="btn-primary">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filters and Sort -->
+            <section class="filter-section">
+                <div class="filter-header">
+                    <h2>Products</h2>
+                    <div class="sort-options">
+                        <label>Sort By:</label>
+                        <select id="sortSelect">
+                            <option value="relevance">Relevance</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="newest">Newest First</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-content">
+                    <!-- Filters Sidebar -->
+                    <aside class="filters-sidebar">
+                        <div class="filter-group">
+                            <h3>Categories</h3>
+                            <div class="filter-options" id="categoryFilters">
+                                <label><input type="checkbox" value="all" checked> All Products</label>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <h3>Price Range</h3>
+                            <div class="price-range">
+                                <input type="number" id="minPrice" placeholder="Min" min="0">
+                                <span>to</span>
+                                <input type="number" id="maxPrice" placeholder="Max">
+                                <button id="applyPriceFilter" class="btn-apply">Apply</button>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <h3>Rating</h3>
+                            <div class="filter-options">
+                                <label><input type="radio" name="rating" value="4"> 4★ & above</label>
+                                <label><input type="radio" name="rating" value="3"> 3★ & above</label>
+                                <label><input type="radio" name="rating" value="2"> 2★ & above</label>
+                            </div>
+                        </div>
+
+                        <button id="clearFilters" class="btn-clear">Clear All Filters</button>
+                    </aside>
+
+                    <!-- Products Grid -->
+                    <div class="products-section">
+                        <div class="products-grid" id="productsGrid">
+                            <!-- Products will be loaded dynamically -->
+                            <div class="loading">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <p>Loading products...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-cart"></i> My Cart</h2>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+                <button class="btn-primary" id="closeCartBtn">Continue Shopping</button>
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display: none;">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price" id="totalPrice">₹0</span>
+            </div>
+            <button class="btn-checkout">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Apnadukan</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Corporate Information</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Help</h3>
+                    <ul>
+                        <li><a href="#">Payments</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Cancellation & Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Policy</h3>
+                    <ul>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Social</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Apnadukan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
